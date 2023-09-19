@@ -16,6 +16,20 @@ resource "aws_security_group" "eic_security_group_instance" {
         self = false
         }        
     ] 
+
+    egress = [
+        {
+        description = "EIC SSH VPC"
+        from_port = 22
+        to_port = 22
+        protocol = "tcp"
+        cidr_blocks = [aws_vpc.main.cidr_block]
+        ipv6_cidr_blocks = []
+        prefix_list_ids = []
+        security_groups = []
+        self = false
+        }
+    ]
 }
 
 # Configure security group to instance connect endpoint
@@ -23,6 +37,20 @@ resource "aws_security_group" "eic_security_group" {
     depends_on = [ aws_vpc.main ]
     name_prefix = "eic_security_group"
     vpc_id = aws_vpc.main.id
+
+    ingress = [   
+        {
+        description = "SSH from VPC"
+        from_port = 22
+        to_port = 22
+        protocol = "tcp"
+        cidr_blocks = [aws_vpc.main.cidr_block]
+        ipv6_cidr_blocks = []
+        prefix_list_ids = []
+        security_groups = []
+        self = false
+        }        
+    ]
 
     egress = [
         {
@@ -92,18 +120,18 @@ resource "aws_security_group" "magento_app_security_group" {
         security_groups = []
         self = false
         },
-    
+
         {
-        description = "SSH from anywhere"
-        from_port = 22
-        to_port = 22
+        description = "HTTPS from anywhere"
+        from_port = 443
+        to_port = 443
         protocol = "tcp"
         cidr_blocks = ["0.0.0.0/0"]
         ipv6_cidr_blocks = []
         prefix_list_ids = []
         security_groups = []
         self = false
-        }        
+        }      
     ]
 
     egress = [

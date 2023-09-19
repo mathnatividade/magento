@@ -9,7 +9,7 @@ terraform {
 
 # Configure the AWS Provider
 provider "aws" {
-  region = "us-east-1"
+  region = "us-east-2"
 }
 
 # Create a launch template for the auto scalling
@@ -44,6 +44,19 @@ resource "aws_route53_record" "magento_app_site" {
   alias {
     name                   = aws_lb.magento_app_elb.dns_name
     zone_id                = aws_lb.magento_app_elb.zone_id
+    evaluate_target_health = true
+  }
+}
+
+# Associate registered domain for cloudfront
+resource "aws_route53_record" "magento_shop" {
+  zone_id = "Z00922771UL6L0OX0JVOG"  
+  name    = "shop.grupo03.cloud"
+  type    = "A"
+
+  alias {
+    name                   = aws_cloudfront_distribution.magento_dist.domain_name
+    zone_id                = aws_cloudfront_distribution.magento_dist.hosted_zone_id
     evaluate_target_health = true
   }
 }
