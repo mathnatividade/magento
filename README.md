@@ -5,7 +5,8 @@
 ## Visão Geral
 Este README descreve a arquitetura de implantação para executar uma instância do Magento, uma plataforma de e-commerce, na Amazon Web Services (AWS). A arquitetura é projetada para ser segura, escalável e resiliente.
 
-![Diagrama da Arquitetura](<img src="Arquitetura_Magento.png">)
+## Diagrama da Arquitetura
+<img src="Arquitetura_Magento.png">
 
 ## Componentes da Arquitetura
 
