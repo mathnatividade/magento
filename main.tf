@@ -22,14 +22,6 @@ resource "aws_launch_template" "magento_app" {
 
     user_data = filebase64("user_data.sh")
 
-    #block_device_mappings {
-    #device_name = "/dev/sda1"
-    #ebs {
-    #  volume_size = 8
-    #  volume_type = "gp2"
-    #}
-    #}
-
     tags = {
       Name = "Web Server"
     } 
@@ -37,8 +29,8 @@ resource "aws_launch_template" "magento_app" {
 
 # Associate registered domain in the alb
 resource "aws_route53_record" "magento_app_site" {
-  zone_id = "Z00922771UL6L0OX0JVOG"  
-  name    = "app.grupo03.cloud"
+  zone_id = "zoneID"  
+  name    = "cname.desejado.aqui"
   type    = "A"
 
   alias {
@@ -48,15 +40,3 @@ resource "aws_route53_record" "magento_app_site" {
   }
 }
 
-# Associate registered domain for cloudfront
-resource "aws_route53_record" "magento_shop" {
-  zone_id = "Z00922771UL6L0OX0JVOG"  
-  name    = "shop.grupo03.cloud"
-  type    = "A"
-
-  alias {
-    name                   = aws_cloudfront_distribution.magento_dist.domain_name
-    zone_id                = aws_cloudfront_distribution.magento_dist.hosted_zone_id
-    evaluate_target_health = true
-  }
-}

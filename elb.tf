@@ -42,7 +42,7 @@ resource "aws_lb_listener" "magento_app_listener" {
   port              = 80
   protocol          = "HTTP"
   #ssl_policy        = "ELBSecurityPolicy-2016-08"
-  #certificate_arn   = "arn:aws:acm:us-east-1:007741065220:certificate/a069c4c2-cf77-46da-b314-80c63269f65e"
+  #certificate_arn   = "arn:certificado:aqui"
 
   default_action {
     type             = "forward"

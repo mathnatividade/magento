@@ -1,7 +1,7 @@
 # Create cloudfront distribution
 resource "aws_cloudfront_distribution" "magento_dist" {
     enabled = true
-    aliases = ["shop.grupo03.cloud"]
+    aliases = ["url.desejada.aqui"]
     origin {
       domain_name = aws_lb.magento_app_elb.dns_name
       origin_id = aws_lb.magento_app_elb.id
@@ -32,7 +32,7 @@ resource "aws_cloudfront_distribution" "magento_dist" {
     }
 
     viewer_certificate {
-      acm_certificate_arn = "arn:aws:acm:us-east-1:007741065220:certificate/a069c4c2-cf77-46da-b314-80c63269f65e"
+      acm_certificate_arn = "arn:certificado:do:acm"
       ssl_support_method = "sni-only"
       minimum_protocol_version = "TLSv1.2_2018"
     }

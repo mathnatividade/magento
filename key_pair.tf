@@ -12,6 +12,6 @@ resource "aws_key_pair" "create_key_pair" {
 # Saving Key Pair for ssh login for Client if needed
 resource "null_resource" "save_key_pair"  {
     provisioner "local-exec" {
-        command = "echo  ${tls_private_key.teste.private_key_pem} > teste.pem"
+        command = "echo  ${tls_private_key.teste.private_key_pem} > keyname.pem"
     }
 }

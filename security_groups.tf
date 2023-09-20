@@ -19,11 +19,11 @@ resource "aws_security_group" "eic_security_group_instance" {
 
     egress = [
         {
-        description = "EIC SSH VPC"
-        from_port = 22
-        to_port = 22
-        protocol = "tcp"
-        cidr_blocks = [aws_vpc.main.cidr_block]
+        description = "Outbound traffic to anywhere"
+        from_port = 0
+        to_port = 0
+        protocol = "-1"
+        cidr_blocks = ["0.0.0.0/0"]
         ipv6_cidr_blocks = []
         prefix_list_ids = []
         security_groups = []
@@ -54,11 +54,11 @@ resource "aws_security_group" "eic_security_group" {
 
     egress = [
         {
-        description = "EIC SSH VPC"
-        from_port = 22
-        to_port = 22
-        protocol = "tcp"
-        cidr_blocks = [aws_vpc.main.cidr_block]
+        description = "Outbound traffic to anywhere"
+        from_port = 0
+        to_port = 0
+        protocol = "-1"
+        cidr_blocks = ["0.0.0.0/0"]
         ipv6_cidr_blocks = []
         prefix_list_ids = []
         security_groups = []
@@ -89,11 +89,11 @@ resource "aws_security_group" "mysql_security_group" {
    
     egress = [
         {
-        description = "MYSQL to VPC"
-        from_port = 3306
-        to_port = 3306
-        protocol = "tcp"
-        cidr_blocks = [aws_vpc.main.cidr_block]
+        description = "Outbound traffic to anywhere"
+        from_port = 0
+        to_port = 0
+        protocol = "-1"
+        cidr_blocks = ["0.0.0.0/0"]
         ipv6_cidr_blocks = []
         prefix_list_ids = []
         security_groups = []
@@ -171,11 +171,11 @@ resource "aws_security_group" "efs_app_files_security_group" {
    
     egress = [
         {
-        description = "EFS to VPC"
-        from_port = 2049
-        to_port = 2049
-        protocol = "tcp"
-        cidr_blocks = [aws_vpc.main.cidr_block]
+        description = "Outbound traffic to anywhere"
+        from_port = 0
+        to_port = 0
+        protocol = "-1"
+        cidr_blocks = ["0.0.0.0/0"]
         ipv6_cidr_blocks = []
         prefix_list_ids = []
         security_groups = []
