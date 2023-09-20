@@ -3,4 +3,4 @@
 terraform.tfstate
 terraform.tfstate.backup
 teste.pem
-cloudfront.tf
+cdn.tf
